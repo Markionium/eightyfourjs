@@ -1,0 +1,19 @@
+import type { Rule } from "eslint";
+
+/**
+ * @fileoverview Checks if the platform specificity of a file name is provided correctly.
+ * @author Mark Polak
+ */
+
+const rule: Rule.RuleModule = {
+  meta: {
+    type: "problem",
+  },
+
+  create(context) {
+    return {};
+  },
+};
+
+module.exports = rule;
+export default rule;

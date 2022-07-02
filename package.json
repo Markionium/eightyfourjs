@@ -1,0 +1,17 @@
+{
+  "name": "@2js/workspaces",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "workspaces": [
+    "packages/eslint-plugin-rules-for-rules",
+    "packages/eslint-plugin-fast-experiences"
+  ],
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.30.3",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^8.0.1",
+    "eslint-plugin-eslint-plugin": "^4.0.1",
+    "eslint-plugin-node": "^11.1.0"
+  }
+}
