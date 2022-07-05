@@ -54,10 +54,7 @@ const rule = createRule<Options, MessageIds>({
 
         if (node.source.value === "react") {
           node.specifiers.forEach((v) => {
-            if (
-              v.type === "ImportSpecifier" &&
-              v.imported.type === "Identifier"
-            ) {
+            if (v.type === "ImportSpecifier") {
               if (v.imported.name === "lazy") {
                 hasReactLazyImport = true;
               }

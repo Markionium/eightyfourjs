@@ -8,13 +8,20 @@
 //------------------------------------------------------------------------------
 
 import rule from "./no-data-retrieving-from-ui-component";
-import { RuleTester } from "eslint";
+import { ESLintUtils } from "@typescript-eslint/utils";
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester();
+const ruleTester = new ESLintUtils.RuleTester({
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+});
 ruleTester.run("no-data-retrieving-from-ui-component", rule, {
   valid: [
     {
@@ -39,7 +46,7 @@ ruleTester.run("no-data-retrieving-from-ui-component", rule, {
       code: "useFetch();",
       errors: [
         {
-          message: "Don't retrieve data from a presentation component",
+          messageId: "failure",
         },
       ],
     },

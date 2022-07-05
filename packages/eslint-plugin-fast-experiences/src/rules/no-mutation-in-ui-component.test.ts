@@ -8,25 +8,26 @@
 //------------------------------------------------------------------------------
 
 import rule from "./no-mutation-in-ui-component";
-import { RuleTester } from "eslint";
+import { ESLintUtils } from "@typescript-eslint/utils";
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester();
+const ruleTester = new ESLintUtils.RuleTester({
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+});
 ruleTester.run("no-mutation-in-ui-component", rule, {
   valid: [
     {
       filename: "something.ts",
       code: "useMutate();",
-      options: [
-        {
-          bannedFunctions: ["useMutate"],
-          exclude: "lpc-.*-ui.*$",
-          message: "Don't mutate data from a presentation component",
-        },
-      ],
+      options: [],
     },
 
     {
@@ -46,7 +47,7 @@ ruleTester.run("no-mutation-in-ui-component", rule, {
       code: "useMutate();",
       errors: [
         {
-          message: "Don't mutate data from a presentation component",
+          messageId: "failure",
         },
       ],
     },

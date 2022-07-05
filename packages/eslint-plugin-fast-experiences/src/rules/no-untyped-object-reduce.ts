@@ -53,9 +53,8 @@ const rule = createRule<Options, MessageIds>({
           const initArgument = node.arguments[1];
 
           const isObjectLiteralInitArgument =
-            initArgument && initArgument.type === "ObjectExpression";
+            initArgument.type === "ObjectExpression";
           const doesNotHaveAccumulatorTypeArgument =
-            funcArgument &&
             funcArgument.type === "ArrowFunctionExpression" &&
             funcArgument.params[0] &&
             funcArgument.params[0].type === "Identifier" &&
@@ -63,8 +62,6 @@ const rule = createRule<Options, MessageIds>({
 
           const doesNotHaveReduceTypeArgument =
             node.typeParameters?.params[0] === undefined;
-
-          console.log();
 
           if (
             isObjectLiteralInitArgument &&

@@ -25,7 +25,8 @@ const ruleTester = new ESLintUtils.RuleTester({
 ruleTester.run("lint-rule-name", rule, {
   valid: [
     {
-      filename: "eslint-plugin-fast-experiences/src/rules/no-untyped-object-reduce.ts",
+      filename:
+        "eslint-plugin-fast-experiences/src/rules/no-untyped-object-reduce.ts",
       code: `
       const rule = createRule<Options, MessageIds>({
         name: "no-untyped-object-reduce",
@@ -36,10 +37,26 @@ ruleTester.run("lint-rule-name", rule, {
 
   invalid: [
     {
-      filename: "eslint-plugin-fast-experiences/src/rules/no-untyped-object-reduce.ts",
+      filename:
+        "eslint-plugin-fast-experiences/src/rules/no-untyped-object-reduce.ts",
       code: `
       const rule = createRule<Options, MessageIds>({
         name: "no-untyped-object-reduced",
+      });
+      `,
+      errors: [
+        {
+          messageId: "wrongName",
+          line: 3,
+        },
+      ],
+    },
+    {
+      filename:
+        "eslint-plugin-fast-experiences/src/rules/no-untyped-object-reduce.ts",
+      code: `
+      const rule = createRule<Options, MessageIds>({
+        name: "",
       });
       `,
       errors: [

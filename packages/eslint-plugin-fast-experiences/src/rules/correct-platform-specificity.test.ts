@@ -8,13 +8,20 @@
 //------------------------------------------------------------------------------
 
 import rule from "./correct-platform-specificity";
-import { RuleTester } from "eslint";
+import { AST_NODE_TYPES, ESLintUtils } from "@typescript-eslint/utils";
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
-const ruleTester = new RuleTester();
+const ruleTester = new ESLintUtils.RuleTester({
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+});
 ruleTester.run("correct-platform-specificity", rule, {
   valid: [
     {
@@ -41,9 +48,12 @@ ruleTester.run("correct-platform-specificity", rule, {
       code: " ",
       errors: [
         {
-          message:
-            "File appears to have flipped specificity: Incorrect.android.native.ts should be Incorrect.native.android.ts",
-          type: "Program",
+          messageId: "failure",
+          data: {
+            fileName: "Incorrect.android.native.ts",
+            fixed: "Incorrect.native.android.ts",
+          },
+          type: AST_NODE_TYPES.Program,
         },
       ],
     },
@@ -53,9 +63,12 @@ ruleTester.run("correct-platform-specificity", rule, {
       code: " ",
       errors: [
         {
-          message:
-            "File appears to have flipped specificity: Incorrect.ios.native.ts should be Incorrect.native.ios.ts",
-          type: "Program",
+          messageId: "failure",
+          data: {
+            fileName: " Incorrect.ios.native.ts",
+            fixed: "Incorrect.native.ios.ts",
+          },
+          type: AST_NODE_TYPES.Program,
         },
       ],
     },

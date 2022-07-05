@@ -1,19 +1,24 @@
-import type { Rule } from "eslint";
+import { TSESLint } from "@typescript-eslint/utils";
 
 /**
  * @fileoverview Checks if useFetch is not used in -ui components
  * @author Mark Polak
  */
 
-export function createBannedFunctionsRuleListenerCreator({
+export function createBannedFunctionsRuleListenerCreator<
+  TMessageIds extends string,
+  TOptions extends readonly unknown[]
+>({
   bannedFunctions,
   include,
-  message,
+  messageId,
 }: {
   bannedFunctions: string[];
   include?: string;
-  message: string;
-}): (context: Rule.RuleContext) => Rule.RuleListener {
+  messageId: TMessageIds;
+}): (
+  context: TSESLint.RuleContext<TMessageIds, TOptions>
+) => TSESLint.RuleListener {
   return (context) => {
     return {
       CallExpression(node) {
@@ -28,7 +33,7 @@ export function createBannedFunctionsRuleListenerCreator({
         ) {
           context.report({
             node,
-            message,
+            messageId,
           });
         }
       },

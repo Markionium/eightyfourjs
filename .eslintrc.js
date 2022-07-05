@@ -11,9 +11,13 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/strict",
     "plugin:node/recommended",
+    "plugin:@2js/rules-for-rules/recommended",
   ],
   rules: {
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "node/no-unsupported-features/es-syntax": "off",
     "node/no-missing-import": [
       "error",
@@ -21,7 +25,14 @@ module.exports = {
         tryExtensions: [".ts", ".json", ".node"],
       },
     ],
-    "@2js/rules-for-rules/lint-rule-name": "error",
+    "node/shebang": [
+      "error",
+      {
+        convertPath: {
+          "src/**/*.ts": ["^src/(.+?)\\.ts$", "lib/$1.js"],
+        },
+      },
+    ],
   },
   env: {
     node: true,

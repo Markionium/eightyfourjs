@@ -1,22 +1,33 @@
-import type { Rule } from "eslint";
+import { ESLintUtils } from "@typescript-eslint/utils";
 import { basename } from "path";
+
+const createRule = ESLintUtils.RuleCreator(
+  (name) => `https://example.com/rule/${name}`
+);
+
+type Options = [];
+
+type MessageIds = "failure";
 
 const platformSpecificRegExp = /\.(android|ios|macos|win32)\.(native)\./;
 
-const failureString = (input: string, platform: string) => {
-  const fixed = input.replace(platformSpecificRegExp, `.native.${platform}.`);
-  return `File appears to have flipped specificity: ${input} should be ${fixed}`;
-};
-
-/**
- * @fileoverview Checks if the platform specificity of a file name is provided correctly.
- * @author Mark Polak
- */
-
-const rule: Rule.RuleModule = {
+const rule = createRule<Options, MessageIds>({
+  name: "correct-platform-specificity",
   meta: {
     type: "problem",
+    docs: {
+      recommended: "error",
+      description:
+        "Checks if the platform specificity of a file name is provided correctly.",
+    },
+    messages: {
+      failure:
+        "File appears to have flipped specificity: {input} should be {fixed}",
+    },
+    schema: {},
   },
+
+  defaultOptions: [],
 
   create(context) {
     return {
@@ -24,9 +35,17 @@ const rule: Rule.RuleModule = {
         const fileName = basename(context.getFilename());
         const match = fileName.match(platformSpecificRegExp);
         if (match) {
+          const platform = match[1];
           context.report({
             node,
-            message: failureString(fileName, match[1]),
+            messageId: "failure",
+            data: {
+              input: fileName,
+              fixed: fileName.replace(
+                platformSpecificRegExp,
+                `.native.${platform}.`
+              ),
+            },
           });
         }
 
@@ -34,7 +53,7 @@ const rule: Rule.RuleModule = {
       },
     };
   },
-};
+});
 
 module.exports = rule;
 export default rule;

@@ -1,0 +1,5 @@
+.eslintrc.js
+babel.config.js
+
+# TODO: Lint this file
+generate-configs.js

@@ -12,6 +12,7 @@
   "scripts": {
     "lint": "eslint src",
     "build": "tsc --project tsconfig.build.json",
+    "generate:configs": "generate-configs",
     "test": "tsc && mocha lib --recursive"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@2js/eslint-plugin-rules-for-rules": "^1.0.0",
+    "@2js/eslint-tools": "^1.0.0",
     "@types/eslint": "^8.4.3",
     "@types/node": "^17.0.41",
     "@types/requireindex": "^1.2.0",

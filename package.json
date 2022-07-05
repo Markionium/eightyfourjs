@@ -5,7 +5,8 @@
   "description": "",
   "workspaces": [
     "packages/eslint-plugin-rules-for-rules",
-    "packages/eslint-plugin-fast-experiences"
+    "packages/eslint-plugin-fast-experiences",
+    "packages/eslint-tools"
   ],
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.30.3",

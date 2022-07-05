@@ -1,6 +1,2 @@
 lib
 node_modules
-
-# Ignore all JS files except eslint config
-*.js
-!.eslintrc.js

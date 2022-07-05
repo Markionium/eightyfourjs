@@ -12,7 +12,6 @@ const rule = createRule<Options, MessageIds>({
   name: "lint-rule-name",
   meta: {
     type: "problem",
-    // TODO(mapol): Fix the URL to link to something public.
     docs: {
       description: `Checks if the name passed to createRule also matches the name of the file`,
       recommended: "error",
@@ -37,17 +36,29 @@ const rule = createRule<Options, MessageIds>({
           node.callee.type === "Identifier" &&
           node.callee.name === "createRule"
         ) {
-
           const ruleDefinitionArgument = node.arguments[0];
-          const isObjectExpressionArgument = ruleDefinitionArgument.type === "ObjectExpression";
-          const nameProperty = isObjectExpressionArgument && ruleDefinitionArgument.properties.find(property => {
-            return property.type === "Property" && property.key.type === "Identifier" &&  property.key.name === "name";
-          });
-          const hasWrongName = nameProperty && nameProperty.type === "Property"  && nameProperty.value.type === "Literal" && nameProperty.value.value && !context.getFilename().endsWith(`${nameProperty.value.value.toString()}.ts`)
+          const isObjectExpressionArgument =
+            ruleDefinitionArgument.type === "ObjectExpression";
+          const nameProperty =
+            isObjectExpressionArgument &&
+            ruleDefinitionArgument.properties.find((property) => {
+              return (
+                property.type === "Property" &&
+                property.key.type === "Identifier" &&
+                property.key.name === "name"
+              );
+            });
+          const hasWrongName =
+            nameProperty &&
+            nameProperty.type === "Property" &&
+            nameProperty.value.type === "Literal" &&
+            (nameProperty.value.value === "" ||
+              (nameProperty.value.value &&
+                !context
+                  .getFilename()
+                  .endsWith(`${nameProperty.value.value.toString()}.ts`)));
 
-          if (
-            hasWrongName
-          ) {
+          if (hasWrongName) {
             context.report({
               node: nameProperty,
               messageId: "wrongName",
