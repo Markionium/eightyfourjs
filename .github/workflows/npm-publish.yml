@@ -18,6 +18,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build --workspaces --if-present
-      - run: npm publish --workspaces
+      - run: npm publish --access=public --workspaces
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
