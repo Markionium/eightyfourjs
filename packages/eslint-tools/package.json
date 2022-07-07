@@ -1,5 +1,5 @@
 {
-  "name": "@2js/eslint-tools",
+  "name": "@eightyfourjs/eslint-tools",
   "version": "1.0.0",
   "main": "lib/index.js",
   "devDependencies": {

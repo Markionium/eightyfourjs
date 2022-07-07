@@ -5,7 +5,7 @@ import { TSESLint } from "@typescript-eslint/utils";
 describe("generateConfigs", () => {
   it("returns the correct recommended config", () => {
     const packageInfo = {
-      name: "@2js/eslint-plugin-rules-for-rules",
+      name: "@eightyfourjs/eslint-plugin-rules-for-rules",
       version: "1.0.0",
       description: "Lint rules for writing lint rules",
     };
@@ -38,7 +38,7 @@ describe("generateConfigs", () => {
 
     expect(generateConfigs(packageInfo, rules).recommended).toEqual({
       rules: {
-        "@2js/rules-for-rules/lint-rule-name": "error",
+        "@eightyfourjs/rules-for-rules/lint-rule-name": "error",
       },
     });
   });

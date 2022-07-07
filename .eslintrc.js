@@ -7,14 +7,17 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.eslint.json", "./packages/*/tsconfig.json"],
   },
-  plugins: ["@typescript-eslint", "@2js/eslint-plugin-rules-for-rules"],
+  plugins: [
+    "@typescript-eslint",
+    "@eightyfourjs/eslint-plugin-rules-for-rules",
+  ],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:@typescript-eslint/strict",
     "plugin:node/recommended",
-    "plugin:@2js/rules-for-rules/recommended",
+    "plugin:@eightyfourjs/rules-for-rules/recommended",
   ],
   rules: {
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
