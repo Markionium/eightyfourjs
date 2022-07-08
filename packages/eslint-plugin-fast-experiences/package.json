@@ -1,6 +1,6 @@
 {
   "name": "@eightyfourjs/eslint-plugin-fast-experiences",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Custom rules used within People Experiences",
   "keywords": [
     "eslint",
