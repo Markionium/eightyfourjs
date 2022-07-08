@@ -31,7 +31,8 @@
   "scripts": {
     "lint": "eslint src",
     "test": "jest",
-    "build": "tsc --project tsconfig.build.json"
+    "build": "tsc --project tsconfig.build.json",
+    "pub": "npm publish || true"
   },
   "author": "",
   "license": "MIT",

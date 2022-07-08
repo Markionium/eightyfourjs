@@ -13,7 +13,8 @@
     "lint": "eslint src",
     "build": "tsc --project tsconfig.build.json",
     "generate:configs": "generate-configs",
-    "test": "tsc && mocha lib --recursive"
+    "test": "tsc && mocha lib --recursive",
+    "pub": "npm publish || true"
   },
   "dependencies": {
     "@typescript-eslint/utils": "^5.27.1",
