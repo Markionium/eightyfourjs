@@ -1,6 +1,6 @@
 {
   "name": "@eightyfourjs/eslint-plugin-fast-experiences",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Custom rules used within People Experiences",
   "keywords": [
     "eslint",
@@ -39,9 +39,10 @@
     "node": "12.x || 14.x || >= 16"
   },
   "peerDependencies": {
-    "eslint": ">=6"
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^6.0.0 || ^7.0.0 || ^8.0.0"
   },
-  "license": "ISC",
+  "license": "MIT",
   "directories": {
     "doc": "docs",
     "lib": "lib"
